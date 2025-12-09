@@ -1,0 +1,18 @@
+Error: API request failed with status 503: {
+  "error": {
+    "code": 503,
+    "message": "The model is overloaded. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+\nError: API request failed with status 503: {
+  "error": {
+    "code": 503,
+    "message": "The model is overloaded. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+    at analyzeSymptoms (C:\Users\DELL\OneDrive\Desktop\SBS-Hack-2.O\Server\utils\gemini.js:57:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\DELL\OneDrive\Desktop\SBS-Hack-2.O\Server\routes\analyze.js:13:22

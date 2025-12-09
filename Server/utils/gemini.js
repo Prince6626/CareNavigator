@@ -2,10 +2,11 @@ const fetch = require('node-fetch');
 
 const analyzeSymptoms = async (symptomsText, city) => {
   const apiKey = process.env.GEMINI_API_KEY;
-  const apiUrl = process.env.GEMINI_URL;
+  // Use official Google Gemini API endpoint
+  const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
 
-  if (!apiKey || !apiUrl) {
-    console.error('Missing GEMINI_API_KEY or GEMINI_URL in environment variables');
+  if (!apiKey) {
+    console.error('Missing GEMINI_API_KEY in environment variables');
     return getDefaultResponse();
   }
 
@@ -40,37 +41,34 @@ Rules:
     const response = await fetch(apiUrl, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: "gpt-5.1-mini",
-        input: prompt,
-        max_tokens: 250,
-        temperature: 0.1
+        contents: [{
+          parts: [{
+            text: prompt
+          }]
+        }]
       })
     });
 
     if (!response.ok) {
-      throw new Error(`API request failed with status ${response.status}`);
+      const errorText = await response.text();
+      throw new Error(`API request failed with status ${response.status}: ${errorText}`);
     }
 
     const data = await response.json();
     
-    // Attempt to extract text content from common LLM response formats
+    // Extract text content from Gemini response format
+    // Structure: data.candidates[0].content.parts[0].text
     let textContent = '';
-    if (data.choices && data.choices[0] && data.choices[0].message) {
-      textContent = data.choices[0].message.content;
-    } else if (data.output) {
-      textContent = data.output;
-    } else if (typeof data === 'string') {
-      textContent = data;
+    if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) {
+      textContent = data.candidates[0].content.parts[0].text;
     } else {
-      // Fallback: try to stringify the whole data if it looks like the answer might be directly there
-      textContent = JSON.stringify(data);
+      throw new Error('Unexpected response format from Gemini API');
     }
 
-    // Parse JSON from text
+    // Parse JSON from text - handle potential markdown code blocks
     const jsonStart = textContent.indexOf('{');
     const jsonEnd = textContent.lastIndexOf('}');
     
@@ -82,6 +80,7 @@ Rules:
     return JSON.parse(jsonStr);
 
   } catch (error) {
+    require('fs').writeFileSync('gemini_error.txt', error.toString() + '\\n' + (error.stack || ''));
     console.error('Gemini analysis error:', error);
     return getDefaultResponse();
   }
