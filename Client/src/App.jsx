@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { analyzeSymptoms, findHospitals } from './api/api';
 import SearchForm from './components/SearchForm';
 import Results from './components/Results';
+import './styles.css';
 
 function App() {
   const [analysis, setAnalysis] = useState(null);
@@ -26,33 +27,52 @@ function App() {
 
       // 3. Find Hospitals
       const hospitalsData = await findHospitals({ speciality, city, disease });
-      setHospitals(hospitalsData.hospitals); // Assuming response structure { hospitals: [...] }
+      setHospitals(hospitalsData.hospitals); 
       
     } catch (err) {
       console.error(err);
-      setError("Something went wrong. Please try again.");
+      setError("Unable to process request. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '2rem' }}>
-      <h1 style={{ textAlign: 'center', marginBottom: '2rem' }}>AI Health Assist (Hackathon Demo)</h1>
-      
-      <SearchForm onSearch={handleSearch} />
+    <div className="app-container">
+      <div className="glass-wrapper">
+        <header className="app-header">
+          <div className="logo-badge">AI Powered</div>
+          <h1>Health <span className="text-neon">Navigator</span></h1>
+          <p className="subtitle">Advanced Symptom Triage & Hospital Finder</p>
+        </header>
 
-      {error && (
-        <p style={{ textAlign: 'center', color: '#ff4444', fontWeight: 'bold' }}>
-          {error}
-        </p>
-      )}
-      
-      <Results 
-        analysis={analysis}
-        hospitals={hospitals}
-        loading={loading}
-      />
+        <main>
+          {/* Step 1: Input */}
+          <section className="input-section">
+            <SearchForm onSearch={handleSearch} loading={loading} />
+          </section>
+
+          {error && (
+            <div className="error-banner">
+              ⚠️ {error}
+            </div>
+          )}
+
+          {/* Step 2 & 3: Results */}
+          <Results 
+            analysis={analysis}
+            hospitals={hospitals}
+            loading={loading}
+          />
+        </main>
+
+        <footer className="app-footer">
+          <p>
+            <strong>Disclaimer:</strong> AI-generated results for informational purposes only. In strict medical emergencies, call emergency services immediately.
+          </p>
+          <p className="footer-credit">Powered by Gemini AI • React • Node.js</p>
+        </footer>
+      </div>
     </div>
   );
 }

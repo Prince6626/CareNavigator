@@ -4,37 +4,49 @@ const HospitalCard = ({ h }) => {
   if (!h) return null;
 
   return (
-    <div style={{
-      border: '1px solid #ddd',
-      borderRadius: '8px',
-      padding: '15px',
-      margin: '10px 0',
-      backgroundColor: '#2a2a2a',
-      textAlign: 'left'
-    }}>
-      <h3 style={{ marginTop: 0, marginBottom: '5px' }}>
-        {h.name} <span style={{ fontSize: '0.8em', fontWeight: 'normal', color: '#aaa' }}>({h.hospital_type})</span>
-      </h3>
-      <p style={{ margin: '5px 0' }}><strong>Address:</strong> {h.address}</p>
-      
-      {h.rating != null && (
-        <p style={{ margin: '5px 0' }}><strong>Rating:</strong> {h.rating} / 5</p>
-      )}
+    <div className="hospital-card card-glass-hover">
+      <div className="card-header">
+        <div className="hospital-info">
+          <h3 className="hospital-name">{h.name}</h3>
+          <span className="hospital-type">{h.hospital_type || 'General Hospital'}</span>
+        </div>
+        
+        {h.rating != null && (
+          <div className="rating-badge">
+            <span className="star">★</span> {h.rating}
+          </div>
+        )}
+      </div>
 
-      {h.cost_text && (
-        <p style={{ margin: '5px 0' }}><strong>Cost: {h.cost_text}</strong></p>
-      )}
+      <div className="card-body">
+        <p className="address-text">📍 {h.address}</p>
+        
+        {h.cost_text && (
+          <div className="cost-section">
+            <span className="label">Est. Treatment Cost</span>
+            <span className="cost-value">{h.cost_text}</span>
+          </div>
+        )}
 
-      {h.map_url && (
-        <a 
-          href={h.map_url} 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          style={{ display: 'inline-block', marginTop: '10px', color: '#646cff' }}
-        >
-          Open in Maps
-        </a>
-      )}
+        <div className="card-actions">
+           {h.map_url ? (
+            <a 
+              href={h.map_url} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="btn-outline btn-map"
+            >
+              Get Directions ↗
+            </a>
+           ) : (
+             <button disabled className="btn-outline disabled">Map Unavailable</button>
+           )}
+           
+           <button className="btn-outline btn-call">
+             Call Now
+           </button>
+        </div>
+      </div>
     </div>
   );
 };

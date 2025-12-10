@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const SearchForm = ({ onSearch }) => {
+const SearchForm = ({ onSearch, loading }) => {
   const [symptoms, setSymptoms] = useState('');
   const [city, setCity] = useState('Ahmedabad');
 
@@ -10,65 +10,50 @@ const SearchForm = ({ onSearch }) => {
   };
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto 30px', padding: '20px', borderRadius: '8px', backgroundColor: '#333' }}>
-      <h2 style={{ marginBottom: '20px', textAlign: 'center' }}>Describe your symptoms</h2>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-        <div>
-          <label htmlFor="symptoms" style={{ display: 'block', marginBottom: '5px' }}>Symptoms</label>
+    <div className="card-glass search-form-card">
+      <div className="step-label">Step 1: Triage</div>
+      <h2>Describe Symptoms</h2>
+      <p className="helper-text">Our AI will analyze your condition and recommend the right specialist.</p>
+      
+      <form onSubmit={handleSubmit} className="form-layout">
+        <div className="form-group">
+          <label htmlFor="symptoms">Symptoms Description</label>
           <textarea
             id="symptoms"
             value={symptoms}
             onChange={(e) => setSymptoms(e.target.value)}
-            placeholder="e.g. I have a severe headache and nausea..."
+            placeholder="e.g. I have had a severe high fever for 3 days with joint pain and nausea..."
             rows={4}
-            style={{
-              width: '100%',
-              padding: '10px',
-              fontSize: '16px',
-              borderRadius: '5px',
-              border: '1px solid #555',
-              backgroundColor: '#444',
-              color: 'white',
-              resize: 'vertical',
-              boxSizing: 'border-box'
-            }}
+            className="modern-input"
+            required
           />
         </div>
         
-        <div>
-          <label htmlFor="city" style={{ display: 'block', marginBottom: '5px' }}>City</label>
+        <div className="form-group">
+          <label htmlFor="city">Current Location (City)</label>
           <input
             id="city"
             type="text"
             value={city}
             onChange={(e) => setCity(e.target.value)}
-            style={{
-              width: '100%',
-              padding: '10px',
-              fontSize: '16px',
-              borderRadius: '5px',
-              border: '1px solid #555',
-              backgroundColor: '#444',
-              color: 'white',
-              boxSizing: 'border-box'
-            }}
+            className="modern-input"
+            placeholder="e.g. New York"
+            required
           />
         </div>
 
         <button 
           type="submit" 
-          style={{ 
-            padding: '12px', 
-            fontSize: '16px', 
-            fontWeight: 'bold',
-            marginTop: '10px',
-            backgroundColor: '#646cff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '5px'
-          }}
+          className={`btn-primary ${loading ? 'btn-loading' : ''}`}
+          disabled={loading}
         >
-          Find Hospitals
+          {loading ? (
+            <span className="flex-center gap-2">
+              <span className="spinner"></span> Analyzing...
+            </span>
+          ) : (
+            'Analyze & Find Hospitals'
+          )}
         </button>
       </form>
     </div>
