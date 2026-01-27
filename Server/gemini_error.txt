@@ -1,7 +1,7 @@
 Error: API request failed with status 429: {
   "error": {
     "code": 429,
-    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\nPlease retry in 50.848514476s.",
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\nPlease retry in 40.526047042s.",
     "status": "RESOURCE_EXHAUSTED",
     "details": [
       {
@@ -29,7 +29,7 @@ Error: API request failed with status 429: {
       },
       {
         "@type": "type.googleapis.com/google.rpc.RetryInfo",
-        "retryDelay": "50s"
+        "retryDelay": "40s"
       }
     ]
   }
@@ -37,7 +37,7 @@ Error: API request failed with status 429: {
 \nError: API request failed with status 429: {
   "error": {
     "code": 429,
-    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\nPlease retry in 50.848514476s.",
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\nPlease retry in 40.526047042s.",
     "status": "RESOURCE_EXHAUSTED",
     "details": [
       {
@@ -65,12 +65,12 @@ Error: API request failed with status 429: {
       },
       {
         "@type": "type.googleapis.com/google.rpc.RetryInfo",
-        "retryDelay": "50s"
+        "retryDelay": "40s"
       }
     ]
   }
 }
 
-    at analyzeSymptoms (C:\Users\DELL\OneDrive\Desktop\SBS-Hack-2.O\Server\utils\gemini.js:57:13)
+    at analyzeSymptoms (C:\Users\DELL\OneDrive\Desktop\SBS-Hack-2.O\Server\utils\gemini.js:58:13)
     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
     at async C:\Users\DELL\OneDrive\Desktop\SBS-Hack-2.O\Server\routes\analyze.js:13:22

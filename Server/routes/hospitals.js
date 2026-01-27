@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Hospital = require('../models/Hospital');
 const { computeCostRange, formatCostText } = require('../utils/cost');
+const { normalizeSpeciality } = require('../utils/specialityMapper');
 
 router.get('/', async (req, res) => {
   try {
@@ -11,9 +12,12 @@ router.get('/', async (req, res) => {
       return res.status(400).json({ error: 'speciality and city are required' });
     }
 
+    // Normalize the speciality name to match database values
+    const normalizedSpeciality = normalizeSpeciality(speciality);
+
     const hospitals = await Hospital.find({
       city: new RegExp(`^${city}$`, 'i'), // Case-insensitive match for city
-      specialities: { $in: [speciality] }
+      specialities: { $in: [normalizedSpeciality] }
     }).limit(50).lean();
 
     const enrichedHospitals = hospitals.map(hospital => {
