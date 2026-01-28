@@ -25,6 +25,7 @@ const hospitals = [
     ],
     hospital_type: 'government',
     rating: 4.0,
+    schemes: ['PMJAY-MA', 'Ayushman Bharat', 'CGHS'],
     base_cost_factor: 0.85
   },
   {
@@ -44,6 +45,7 @@ const hospitals = [
     ],
     hospital_type: 'trust',
     rating: 3.8,
+    schemes: ['PMJAY-MA', 'Ayushman Bharat'],
     base_cost_factor: 0.95
   },
   {
@@ -62,6 +64,7 @@ const hospitals = [
     ],
     hospital_type: 'government',
     rating: 4.1,
+    schemes: ['PMJAY-MA', 'Ayushman Bharat', 'ESIC'],
     base_cost_factor: 0.8
   },
 
@@ -88,6 +91,7 @@ const hospitals = [
     ],
     hospital_type: 'premium',
     rating: 4.8,
+    schemes: ['Private Insurance', 'Corporate Tie-ups'],
     base_cost_factor: 1.4
   },
   {
@@ -108,6 +112,7 @@ const hospitals = [
     ],
     hospital_type: 'premium',
     rating: 4.7,
+    schemes: ['Private Insurance', 'Corporate Tie-ups'],
     base_cost_factor: 1.35
   },
 
@@ -129,6 +134,7 @@ const hospitals = [
     ],
     hospital_type: 'private',
     rating: 4.7,
+    schemes: ['Private Insurance', 'Ayushman Bharat'],
     base_cost_factor: 1.2
   },
   {
@@ -147,6 +153,7 @@ const hospitals = [
     ],
     hospital_type: 'private',
     rating: 4.5,
+    schemes: ['Private Insurance'],
     base_cost_factor: 1.1
   },
   {
@@ -165,6 +172,7 @@ const hospitals = [
     ],
     hospital_type: 'private',
     rating: 4.2,
+    schemes: ['Private Insurance', 'PMJAY-MA'],
     base_cost_factor: 1.1
   },
   {
@@ -183,6 +191,7 @@ const hospitals = [
     ],
     hospital_type: 'private',
     rating: 4.4,
+    schemes: ['Private Insurance', 'Corporate Tie-ups'],
     base_cost_factor: 1.15
   },
 
@@ -203,6 +212,7 @@ const hospitals = [
     ],
     hospital_type: 'private',
     rating: 4.6,
+    schemes: ['PMJAY-MA', 'Private Insurance'],
     base_cost_factor: 1.3
   },
   {
@@ -221,6 +231,7 @@ const hospitals = [
     ],
     hospital_type: 'private',
     rating: 4.3,
+    schemes: ['PMJAY-MA', 'Ayushman Bharat'],
     base_cost_factor: 1.2
   }
 ];

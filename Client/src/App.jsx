@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Heart, MapPin, Stethoscope, Hospital, TrendingUp, Search, ChevronRight, Star, Shield } from 'lucide-react';
 import { analyzeSymptoms, findHospitals } from './api/api';
+import HospitalDetail from './components/HospitalDetail';
 
 function App() {
   const [symptoms, setSymptoms] = useState('');
@@ -8,6 +9,7 @@ function App() {
   const [step, setStep] = useState('hero');
   const [analysis, setAnalysis] = useState(null);
   const [hospitals, setHospitals] = useState([]);
+  const [selectedHospital, setSelectedHospital] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -39,6 +41,16 @@ function App() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleHospitalClick = (hospital) => {
+    setSelectedHospital(hospital);
+    setStep('detail');
+  };
+
+  const handleBackToResults = () => {
+    setSelectedHospital(null);
+    setStep('results');
   };
 
   return (
@@ -263,18 +275,25 @@ function App() {
                         </span>
                       )}
                     </div>
-                    <div className="flex gap-3">
+                    <div className="mt-4 flex gap-3">
+                      <button 
+                        onClick={() => handleHospitalClick(hospital)}
+                        className="flex-1 bg-white border-2 border-slate-200 text-slate-700 font-semibold py-3 rounded-lg hover:border-emerald-500 hover:text-emerald-600 transition-all text-center"
+                      >
+                        View Details
+                      </button>
                       {hospital.map_url ? (
                         <a
                           href={hospital.map_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-1 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold py-3 rounded-lg hover:from-emerald-700 hover:to-teal-700 transition-all text-center"
+                          className="flex-1 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold py-3 rounded-lg hover:from-emerald-700 hover:to-teal-700 transition-all text-center flex items-center justify-center gap-2"
                         >
-                          Get Directions
+                          <MapPin className="w-4 h-4" />
+                          Directions
                         </a>
                       ) : (
-                        <button disabled className="flex-1 bg-slate-200 text-slate-400 font-semibold py-3 rounded-lg cursor-not-allowed">
+                        <button disabled className="flex-1 bg-slate-100 text-slate-400 font-semibold py-3 rounded-lg cursor-not-allowed">
                           Map Unavailable
                         </button>
                       )}
@@ -339,6 +358,13 @@ function App() {
             </div>
           </div>
         </main>
+      )}
+
+      {step === 'detail' && (
+        <HospitalDetail 
+          hospital={selectedHospital} 
+          onBack={handleBackToResults} 
+        />
       )}
 
       {/* Footer */}
