@@ -18,7 +18,10 @@ const HospitalSchema = new mongoose.Schema({
     default: 'private' 
   },
   rating: Number,
-  schemes: [String],
+  acceptedSchemes: [{
+    schemeName: String,
+    schemeId: mongoose.Schema.Types.ObjectId
+  }],
   base_cost_factor: { 
     type: Number, 
     default: 1.0 

@@ -25,7 +25,11 @@ const hospitals = [
     ],
     hospital_type: 'government',
     rating: 4.0,
-    schemes: ['PMJAY-MA', 'Ayushman Bharat', 'CGHS'],
+    acceptedSchemes: [
+      { schemeName: 'Ayushman Bharat PM-JAY', schemeId: new mongoose.Types.ObjectId() },
+      { schemeName: 'Mukhyamantri Amrutum Yojana', schemeId: new mongoose.Types.ObjectId() },
+      { schemeName: 'CGHS', schemeId: new mongoose.Types.ObjectId() }
+    ],
     base_cost_factor: 0.85
   },
   {
@@ -45,7 +49,10 @@ const hospitals = [
     ],
     hospital_type: 'trust',
     rating: 3.8,
-    schemes: ['PMJAY-MA', 'Ayushman Bharat'],
+    acceptedSchemes: [
+      { schemeName: 'Ayushman Bharat PM-JAY', schemeId: new mongoose.Types.ObjectId() },
+      { schemeName: 'Mukhyamantri Amrutum Yojana', schemeId: new mongoose.Types.ObjectId() }
+    ],
     base_cost_factor: 0.95
   },
   {
@@ -64,7 +71,11 @@ const hospitals = [
     ],
     hospital_type: 'government',
     rating: 4.1,
-    schemes: ['PMJAY-MA', 'Ayushman Bharat', 'ESIC'],
+    acceptedSchemes: [
+      { schemeName: 'Ayushman Bharat PM-JAY', schemeId: new mongoose.Types.ObjectId() },
+      { schemeName: 'Mukhyamantri Amrutum Yojana', schemeId: new mongoose.Types.ObjectId() },
+      { schemeName: 'ESIC', schemeId: new mongoose.Types.ObjectId() }
+    ],
     base_cost_factor: 0.8
   },
 
@@ -91,7 +102,10 @@ const hospitals = [
     ],
     hospital_type: 'premium',
     rating: 4.8,
-    schemes: ['Private Insurance', 'Corporate Tie-ups'],
+    acceptedSchemes: [
+      { schemeName: 'Private Insurance', schemeId: new mongoose.Types.ObjectId() },
+      { schemeName: 'Corporate Tie-ups', schemeId: new mongoose.Types.ObjectId() }
+    ],
     base_cost_factor: 1.4
   },
   {
@@ -112,7 +126,10 @@ const hospitals = [
     ],
     hospital_type: 'premium',
     rating: 4.7,
-    schemes: ['Private Insurance', 'Corporate Tie-ups'],
+    acceptedSchemes: [
+      { schemeName: 'Private Insurance', schemeId: new mongoose.Types.ObjectId() },
+      { schemeName: 'Corporate Tie-ups', schemeId: new mongoose.Types.ObjectId() }
+    ],
     base_cost_factor: 1.35
   },
 
@@ -134,7 +151,10 @@ const hospitals = [
     ],
     hospital_type: 'private',
     rating: 4.7,
-    schemes: ['Private Insurance', 'Ayushman Bharat'],
+    acceptedSchemes: [
+      { schemeName: 'Private Insurance', schemeId: new mongoose.Types.ObjectId() },
+      { schemeName: 'Ayushman Bharat PM-JAY', schemeId: new mongoose.Types.ObjectId() }
+    ],
     base_cost_factor: 1.2
   },
   {
@@ -153,7 +173,9 @@ const hospitals = [
     ],
     hospital_type: 'private',
     rating: 4.5,
-    schemes: ['Private Insurance'],
+    acceptedSchemes: [
+      { schemeName: 'Private Insurance', schemeId: new mongoose.Types.ObjectId() }
+    ],
     base_cost_factor: 1.1
   },
   {
@@ -172,7 +194,10 @@ const hospitals = [
     ],
     hospital_type: 'private',
     rating: 4.2,
-    schemes: ['Private Insurance', 'PMJAY-MA'],
+    acceptedSchemes: [
+      { schemeName: 'Private Insurance', schemeId: new mongoose.Types.ObjectId() },
+      { schemeName: 'Mukhyamantri Amrutum Yojana', schemeId: new mongoose.Types.ObjectId() }
+    ],
     base_cost_factor: 1.1
   },
   {
@@ -191,7 +216,10 @@ const hospitals = [
     ],
     hospital_type: 'private',
     rating: 4.4,
-    schemes: ['Private Insurance', 'Corporate Tie-ups'],
+    acceptedSchemes: [
+      { schemeName: 'Private Insurance', schemeId: new mongoose.Types.ObjectId() },
+      { schemeName: 'Corporate Tie-ups', schemeId: new mongoose.Types.ObjectId() }
+    ],
     base_cost_factor: 1.15
   },
 
@@ -212,7 +240,10 @@ const hospitals = [
     ],
     hospital_type: 'private',
     rating: 4.6,
-    schemes: ['PMJAY-MA', 'Private Insurance'],
+    acceptedSchemes: [
+      { schemeName: 'Mukhyamantri Amrutum Yojana', schemeId: new mongoose.Types.ObjectId() },
+      { schemeName: 'Private Insurance', schemeId: new mongoose.Types.ObjectId() }
+    ],
     base_cost_factor: 1.3
   },
   {
@@ -231,7 +262,10 @@ const hospitals = [
     ],
     hospital_type: 'private',
     rating: 4.3,
-    schemes: ['PMJAY-MA', 'Ayushman Bharat'],
+    acceptedSchemes: [
+      { schemeName: 'Ayushman Bharat PM-JAY', schemeId: new mongoose.Types.ObjectId() },
+      { schemeName: 'Mukhyamantri Amrutum Yojana', schemeId: new mongoose.Types.ObjectId() }
+    ],
     base_cost_factor: 1.2
   }
 ];
